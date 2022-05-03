@@ -1,0 +1,1123 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="estadosCuentaComercio"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="595"
+		 pageHeight="842"
+		 columnWidth="482"
+		 columnSpacing="0"
+		 leftMargin="40"
+		 rightMargin="40"
+		 topMargin="20"
+		 bottomMargin="30"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+        <property name = "net.sf.jasperreports.export.xls.ignore.graphics" value = "false" />
+        <property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>        
+	<property name="ireport.encoding" value="UTF-8" />                       
+    
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />                
+        
+        <style name="estiloTitulos" mode="Opaque" fontName = "Helvetica" pdfFontName = "Helvetica-Bold" backcolor = "lightGray">
+        <conditionalStyle>
+            <style/>
+        </conditionalStyle>
+        </style>
+        
+        <style name = "estiloInformacion" mode="Opaque" fontName = "Helvetica" pdfFontName = "Helvetica">
+          <conditionalStyle>
+             <style/>
+          </conditionalStyle>
+        </style>
+        
+        <style name = "estiloInformacionBold" mode="Opaque" fontName = "Helvetica" pdfFontName = "Helvetica-Bold">
+          <conditionalStyle>
+             <style/>
+          </conditionalStyle>
+        </style>                       
+
+	<parameter name="fechaInicioMes" isForPrompting="false" class="java.lang.String"/>
+        <parameter name="fechaFinMes" isForPrompting="false" class="java.lang.String"/>
+        <parameter name="terminal" isForPrompting="false" class="java.lang.String"/>
+        <parameter name="nombreComercio" isForPrompting="false" class="java.lang.String"/>
+        <parameter name="rif" isForPrompting="false" class="java.lang.String"/>
+        <parameter name="direccion" isForPrompting="false" class="java.lang.String"/>
+        <parameter name="telefono" isForPrompting="false" class="java.lang.String"/>
+        <parameter name="banco" isForPrompting="false" class="java.lang.String"/>
+        <parameter name="logo" isForPrompting="false" class="java.lang.String"/>
+        <parameter name="montoTotalFacturado" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="montoDeduccionesMantenimiento" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="montoDeduccionesIvaMantenimiento" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="montoDeduccionesComisionBancaria" class="java.lang.String" isForPrompting="false"/>
+        <parameter name="montoTotalDeducciones" isForPrompting="false" class="java.lang.String"/>
+        <parameter name="totalAbono" isForPrompting="false" class="java.lang.String"/>	                
+        <parameter name="montoTotalFacturadoPetro" isForPrompting="false" class="java.lang.String"/>
+        <parameter name="montoDeduccionesMantenimientoPetro" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="montoDeduccionesIvaMantenimientoPetro" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="montoDeduccionesComisionBancariaPetro" class="java.lang.String" isForPrompting="false"/>
+        <parameter name="montoTotalDeduccionesPetro" isForPrompting="false" class="java.lang.String"/>
+        <parameter name="totalAbonoPetro" isForPrompting="false" class="java.lang.String"/> 
+        
+        <field name="fecha" class="java.lang.String"/>
+        <field name="montoFacturado" class="java.lang.String"/>
+        <field name="hisComisionMantenimiento" class="java.lang.String"/>
+        <field name="hisIvaSobreMantenimiento" class="java.lang.String"/>
+        <field name="hisComisionBancaria" class="java.lang.String"/>
+        <field name="montoTotal" class="java.lang.String"/>
+        <field name="montoTotalPetro" class="java.lang.String"/>
+
+                <background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="286" isSplitAllowed="true" >                            
+                            <image evaluationTime="Now" hyperlinkType="None" hyperlinkTarget="Self">
+                                <reportElement
+                                    x="0"
+                                    y="0"
+                                    width="150"
+                                    height="95"
+                                    key="image-1"/>
+                                    <box></box>
+                                    <graphicElement stretchType="NoStretch"/>
+                                    <imageExpression><![CDATA[$P{logo}]]></imageExpression>
+                            </image>                            
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="345"
+                                            y="0"
+                                            width="170"
+                                            height="18"
+                                            style="estiloInformacionBold"                                                                                            
+                                            key="textField-1"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Right" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["USO CONFIDENCIAL"]]></textFieldExpression>
+                            </textField>    
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="385"
+                                            y="18"
+                                            width="65"
+                                            height="18"
+                                            style="estiloInformacionBold"                                                                                          
+                                            key="textField-2"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Right" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Fecha: "]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="450"
+                                            y="18"
+                                            width="65"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-3"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Right" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA[$P{fechaFinMes}]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="385"
+                                            y="36"
+                                            width="65"
+                                            height="18"
+                                            style="estiloInformacionBold"                                                                                            
+                                            key="textField-4"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Right" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Terminal: "]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="450"
+                                            y="36"
+                                            width="65"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                           
+                                            key="textField-5"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Right" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA[$P{terminal}]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="95"
+                                            width="515"
+                                            height="25"
+                                            style="estiloInformacionBold"
+                                            key="textField-6"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="14"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["ESTADO DE CUENTA"]]></textFieldExpression>
+                            </textField>    
+                            <staticText>
+                                <reportElement
+                                        x="17"
+                                        y="120"
+                                        width="30"
+                                        height="4"
+                                        key="staticText-1"/>
+                                <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                <textElement>
+                                        <font/>
+                                </textElement>
+				<text><![CDATA[]]></text>
+                            </staticText>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="124"
+                                            width="515"
+                                            height="18"                                                
+                                            style="estiloTitulos"
+                                            key="textField-7"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Datos del Comercio"]]></textFieldExpression>
+                            </textField>                                                                
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="142"
+                                            width="255"
+                                            height="36"                                                
+                                            style="estiloTitulos"
+                                            key="textField-8"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Nombre del Comercio"]]></textFieldExpression>
+                            </textField>           
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="255"
+                                            y="142"
+                                            width="90"
+                                            height="36"                                                
+                                            style="estiloTitulos" 
+                                            key="textField-9"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["RIF"]]></textFieldExpression>
+                            </textField>              
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="345"
+                                            y="142"
+                                            width="170"
+                                            height="18"                                                
+                                            style="estiloTitulos" 
+                                            key="textField-10"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Periodo del Edo. de Cuenta"]]></textFieldExpression>
+                            </textField>                                                                                                                                
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="345"
+                                            y="160"
+                                            width="85"
+                                            height="18"                                                
+                                            style="estiloTitulos" 
+                                            key="textField-11"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Desde"]]></textFieldExpression>
+                            </textField>                                                                                                
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="430"
+                                            y="160"
+                                            width="85"
+                                            height="18"                                                
+                                            style="estiloTitulos" 
+                                            key="textField-12"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Hasta"]]></textFieldExpression>
+                            </textField>                                                                                                                                                                                                                                  
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="178"
+                                            width="255"
+                                            height="36"
+                                            style="estiloInformacion"                                               						
+                                            key="textField-13"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA[$P{nombreComercio}]]></textFieldExpression>
+                            </textField>           
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="255"
+                                            y="178"
+                                            width="90"
+                                            height="36"
+                                            style="estiloInformacion"                                                						
+                                            key="textField-14"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA[$P{rif}]]></textFieldExpression>
+                            </textField>                                                                                                                                                                             
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="345"
+                                            y="178"
+                                            width="85"
+                                            height="36"
+                                            style="estiloInformacion"                                               						
+                                            key="textField-15"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA[$P{fechaInicioMes}]]></textFieldExpression>
+                            </textField>                                                                                                
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="430"
+                                            y="178"
+                                            width="85"
+                                            height="36"
+                                            style="estiloInformacion"                                                						
+                                            key="textField-16"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA[$P{fechaFinMes}]]></textFieldExpression>
+                            </textField>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+                           <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="214"
+                                            width="345"
+                                            height="18"                                                
+                                            style="estiloTitulos" 
+                                            key="textField-17"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Dirección Fiscal"]]></textFieldExpression>
+                            </textField>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="345"
+                                            y="214"
+                                            width="170"
+                                            height="18"                                                
+                                            style="estiloTitulos" 
+                                            key="textField-18"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Teléfono:"]]></textFieldExpression>
+                            </textField>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="232"
+                                            width="345"
+                                            height="36"
+                                            style="estiloInformacion"                                                						
+                                            key="textField-19"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA[$P{direccion}]]></textFieldExpression>
+                            </textField>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="345"
+                                            y="232"
+                                            width="170"
+                                            height="36"
+                                            style="estiloInformacion"                                                					
+                                            key="textField-20"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA[$P{telefono}]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="268"
+                                            width="515"
+                                            height="18"                                                
+                                            style="estiloTitulos" 
+                                            key="textField-21"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Datos del Abono Banco: " + $P{banco}]]></textFieldExpression>
+                            </textField>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+			</band>
+		</title>
+		<pageHeader>
+			<band height="18"  isSplitAllowed="true" >                                                                                                                                                                          
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="0"
+                                            width="515"
+                                            height="18"
+                                            style="estiloTitulos" 
+                                            key="textField-22"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Tarjetas de Débito/Crédito"]]></textFieldExpression>
+                            </textField>  				
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="36">                            
+                             <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="0"
+                                            width="70"
+                                            height="36"
+                                            style="estiloInformacionBold" 
+                                            key="textField-34"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Fecha"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="70"
+                                            y="0"
+                                            width="70"
+                                            height="36"
+                                            style="estiloInformacionBold" 
+                                            key="textField-35"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Monto Facturado (Bs.)"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="140"
+                                            y="0"
+                                            width="70"
+                                            height="36"
+                                            style="estiloInformacionBold" 
+                                            key="textField-36"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Tarifa 1000PAGOS (Bs.)"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="210"
+                                            y="0"
+                                            width="70"
+                                            height="36"
+                                            style="estiloInformacionBold" 
+                                            key="textField-36"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Iva (Bs.)"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="280"
+                                            y="0"
+                                            width="70"
+                                            height="36"
+                                            style="estiloInformacionBold" 
+                                            key="textField-36"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Comisión Bancaria (Bs.)"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="350"
+                                            y="0"
+                                            width="70"
+                                            height="36"
+                                            style="estiloInformacionBold" 
+                                            key="textField-37"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA["Total Abono (Bs.)"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="420"
+                                            y="0"
+                                            width="95"
+                                            height="36"
+                                            style="estiloInformacionBold" 
+                                            key="textField-37"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA["Total Abono (PTR)"]]></textFieldExpression>
+                            </textField>                                                                                             
+			</band>
+		</columnHeader>
+		<detail>                        
+			<band height="18">
+                            <break> 
+                                <reportElement x="0" y="0" width="100" height="1"> 
+                                    <printWhenExpression><![CDATA[$V{PAGE_COUNT}==22]]>
+                                    </printWhenExpression> 
+                                </reportElement> 
+                            </break>
+                            <textField>
+                                <reportElement
+                                            x="0"
+                                            y="0"
+                                            width="70"
+                                            height="18"
+                                            style="estiloInformacion" 
+                                            key="textField-38"/>
+                                <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                <textElement textAlignment = "Center" verticalAlignment = "Middle">
+                                   <font size="10" />
+                                </textElement>
+                                <textFieldExpression class = "java.lang.String">
+                                   <![CDATA[$F{fecha}]]>
+                                </textFieldExpression>
+                             </textField>
+                             <textField>
+                                <reportElement
+                                            x="70"
+                                            y="0"
+                                            width="70"
+                                            height="18"
+                                            style="estiloInformacion" 
+                                            key="textField-39"/>
+                                <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                <textElement textAlignment = "Center" verticalAlignment = "Middle">
+                                   <font size="10" />
+                                </textElement>
+                                <textFieldExpression class = "java.lang.String">
+                                   <![CDATA[$F{montoFacturado}]]>
+                                </textFieldExpression>
+                             </textField>
+                             <textField>
+                                <reportElement
+                                            x="140"
+                                            y="0"
+                                            width="70"
+                                            height="18"
+                                            style="estiloInformacion" 
+                                            key="textField-40"/>
+                                <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                <textElement textAlignment = "Center" verticalAlignment = "Middle">
+                                   <font size="10" />
+                                </textElement>
+                                <textFieldExpression class = "java.lang.String">
+                                   <![CDATA[$F{hisComisionMantenimiento}]]>
+                                </textFieldExpression>
+                             </textField>
+                             <textField>
+                                <reportElement
+                                            x="210"
+                                            y="0"
+                                            width="70"
+                                            height="18"
+                                            style="estiloInformacion" 
+                                            key="textField-40"/>
+                                <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                <textElement textAlignment = "Center" verticalAlignment = "Middle">
+                                   <font size="10" />
+                                </textElement>
+                                <textFieldExpression class = "java.lang.String">
+                                   <![CDATA[$F{hisIvaSobreMantenimiento}]]>
+                                </textFieldExpression>
+                             </textField>
+                             <textField>
+                                <reportElement
+                                            x="280"
+                                            y="0"
+                                            width="70"
+                                            height="18"
+                                            style="estiloInformacion" 
+                                            key="textField-40"/>
+                                <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                <textElement textAlignment = "Center" verticalAlignment = "Middle">
+                                   <font size="10" />
+                                </textElement>
+                                <textFieldExpression class = "java.lang.String">
+                                   <![CDATA[$F{hisComisionBancaria}]]>
+                                </textFieldExpression>
+                             </textField>
+                             <textField>
+                                <reportElement
+                                            x="350"
+                                            y="0"
+                                            width="70"
+                                            height="18"
+                                            style="estiloInformacion" 
+                                            key="textField-41"/>
+                                <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                <textElement textAlignment = "Center" verticalAlignment = "Middle">
+                                   <font size="10" />
+                                </textElement>
+                                <textFieldExpression class = "java.lang.String">
+                                   <![CDATA[$F{montoTotal}]]>
+                                </textFieldExpression>
+                             </textField>
+                             <textField>
+                                <reportElement
+                                            x="420"
+                                            y="0"
+                                            width="95"
+                                            height="18"
+                                            style="estiloInformacion" 
+                                            key="textField-51"/>
+                                <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                <textElement textAlignment = "Center" verticalAlignment = "Middle">
+                                   <font size="10" />
+                                </textElement>
+                                <textFieldExpression class = "java.lang.String">
+                                   <![CDATA[$F{montoTotalPetro}]]>
+                                </textFieldExpression>
+                             </textField>                                                                                            
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0" isSplitAllowed="true" >                                                         
+			</band>
+		</columnFooter>
+		<pageFooter>
+                        <band height="34">                            
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="0"
+                                            width="74"
+                                            height="18"
+                                            key="textField"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Right">
+                                            <font/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Página " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Report" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="76"
+                                            y="0"
+                                            width="100"
+                                            height="18"
+                                            key="textField"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement>
+                                            <font/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER} + ""]]></textFieldExpression>
+                            </textField>                            
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="324"
+                                            y="0"
+                                            width="97"
+                                            height="18"
+                                            key="textField-1"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Right">
+                                            <font/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Generado el "]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" pattern="dd/MM/yyyy HH:mm" isBlankWhenNull="false" evaluationTime="Report" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="425"
+                                            y="0"
+                                            width="90"
+                                            height="18"
+                                            key="textField"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement>
+                                            <font/>
+                                    </textElement>
+                            <textFieldExpression  class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+                            </textField>                           
+                        </band>
+		</pageFooter>
+		<lastPageFooter>
+			<band height="0" isSplitAllowed="true" >                                                                                                                                             
+			</band>
+		</lastPageFooter>
+		<summary>
+			<band height="198" isSplitAllowed="true">
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="0"
+                                            width="302"
+                                            height="18"                                                
+                                            style="estiloTitulos" 
+                                            key="textField-24"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA["Concepto"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="302"
+                                            y="0"
+                                            width="111"
+                                            height="18"                                                
+                                            style="estiloTitulos" 
+                                            key="textField-25"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA["Monto  Bs."]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="413"
+                                            y="0"
+                                            width="102"
+                                            height="18"                                                
+                                            style="estiloTitulos" 
+                                            key="textField-52"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA["Monto PTR"]]></textFieldExpression>
+                            </textField>                                                                                    
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="18"
+                                            width="302"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-26"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Left" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA["Total Facturado"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="302"
+                                            y="18"
+                                            width="111"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-27"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA[$P{montoTotalFacturado}]]></textFieldExpression>
+                            </textField>                                                                                                                
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="413"
+                                            y="18"
+                                            width="102"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-53"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA[$P{montoTotalFacturadoPetro}]]></textFieldExpression>
+                            </textField>                                                                                                                                            
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="36"
+                                            width="302"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-28"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Left" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA["Deducciones Mantenimiento"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="302"
+                                            y="36"
+                                            width="111"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-29"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA[$P{montoDeduccionesMantenimiento}]]></textFieldExpression>
+                            </textField>                                                                                                                
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="413"
+                                            y="36"
+                                            width="102"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-54"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA[$P{montoDeduccionesMantenimientoPetro}]]></textFieldExpression>
+                            </textField>       
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="54"
+                                            width="302"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-28"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Left" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA["Deducciones Iva Mantenimiento"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="302"
+                                            y="54"
+                                            width="111"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-29"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA[$P{montoDeduccionesIvaMantenimiento}]]></textFieldExpression>
+                            </textField>                                                                                                                
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="413"
+                                            y="54"
+                                            width="102"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-54"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA[$P{montoDeduccionesIvaMantenimientoPetro}]]></textFieldExpression>
+                            </textField> 
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="72"
+                                            width="302"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-28"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Left" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA["Deducciones Comision Bancaria"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="302"
+                                            y="72"
+                                            width="111"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-29"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA[$P{montoDeduccionesComisionBancaria}]]></textFieldExpression>
+                            </textField>                                                                                                                
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="413"
+                                            y="72"
+                                            width="102"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-54"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA[$P{montoDeduccionesComisionBancariaPetro}]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="90"
+                                            width="302"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-28"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Left" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA["Total Deducciones"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="302"
+                                            y="90"
+                                            width="111"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-29"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA[$P{montoTotalDeducciones}]]></textFieldExpression>
+                            </textField>                                                                                                                
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="413"
+                                            y="90"
+                                            width="102"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-54"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA[$P{montoTotalDeduccionesPetro}]]></textFieldExpression>
+                            </textField>                                                                                                                                                                                                                                                                                                                                     
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="108"
+                                            width="302"
+                                            height="18"
+                                            style="estiloInformacion"                                                                                            
+                                            key="textField-30"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Right" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA["Neto a Depositar"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="302"
+                                            y="108"
+                                            width="111"
+                                            height="18"
+                                            style="estiloInformacionBold"                                                                                            
+                                            key="textField-31"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA[$P{totalAbono}]]></textFieldExpression>
+                            </textField>                                                                                                                
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="413"
+                                            y="108"
+                                            width="102"
+                                            height="18"
+                                            style="estiloInformacionBold"                                                                                            
+                                            key="textField-31"/>
+                                    <box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                            <font size="10"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA[$P{totalAbonoPetro}]]></textFieldExpression>
+                            </textField>                                                                                                                                                                        
+                            <staticText>
+                                <reportElement
+                                        x="0"
+                                        y="126"
+                                        width="30"
+                                        height="4"
+                                        key="staticText-2"/>
+                                <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                <textElement>
+                                        <font/>
+                                </textElement>
+				<text><![CDATA[]]></text>
+                            </staticText>
+                            <line direction="TopDown">
+                                    <reportElement
+                                            x="0"
+                                            y="128"
+                                            width="515"
+                                            height="0"
+                                            key="line-1"/>
+                                    <graphicElement stretchType="NoStretch" pen="1Point" fill="Solid" />
+                            </line>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="130"
+                                            width="70"
+                                            height="15"
+                                            style="estiloInformacionBold"
+                                            key="textField-32"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center">
+                                            <font size="8"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA["Junio 2016 (V.1)"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="445"
+                                            y="130"
+                                            width="70"
+                                            height="15"
+                                            style="estiloInformacionBold"
+                                            key="textField-33"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center">
+                                            <font size="8"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA["NEG-FOR-0006"]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="140"
+                                            width="515"
+                                            height="40"
+                                            style="estiloInformacion"
+                                            key="textField-23"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Center">
+                                            <font size="8"/>
+                                    </textElement>
+                            <textFieldExpression   class="java.lang.String"><![CDATA["La información contenida en este documento es de USO CONFIDENCIAL exclusiva para los empleados y terceros autorizados por su propietario, no podrá ser revelada, duplicada, usada o publicada total o parcialmente sin autorización previa de la Empresa. La denominación comercial y el logo de la marca 1000pagos, son propiedad exclusiva de Inversiones Gross, C.A. RIF J-00337298-6."]]></textFieldExpression>
+                            </textField>                                                                                    
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="0"
+                                            y="180"
+                                            width="74"
+                                            height="18"
+                                            key="textField"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Right">
+                                            <font/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Página " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Report" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="76"
+                                            y="180"
+                                            width="100"
+                                            height="18"
+                                            key="textField"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement>
+                                            <font/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER} + ""]]></textFieldExpression>
+                            </textField>                            
+                            <textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="324"
+                                            y="180"
+                                            width="97"
+                                            height="18"
+                                            key="textField-1"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement textAlignment="Right">
+                                            <font/>
+                                    </textElement>
+                            <textFieldExpression  class="java.lang.String"><![CDATA["Generado el "]]></textFieldExpression>
+                            </textField>
+                            <textField isStretchWithOverflow="false" pattern="dd/MM/yyyy HH:mm" isBlankWhenNull="false" evaluationTime="Report" hyperlinkType="None"  hyperlinkTarget="Self" >
+                                    <reportElement
+                                            x="425"
+                                            y="180"
+                                            width="90"
+                                            height="18"
+                                            key="textField"/>
+                                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                                    <textElement>
+                                            <font/>
+                                    </textElement>
+                            <textFieldExpression  class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+                            </textField>
+			</band>
+		</summary>
+</jasperReport>

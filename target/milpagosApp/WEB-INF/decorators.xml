@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/layouts">
+    <!-- Any urls that are excluded will never be decorated by Sitemesh -->
+    <excludes>        
+        <pattern>/WEB-INF/classes/*</pattern>
+        <pattern>/WEB-INF/css/*</pattern>
+        <pattern>/WEB-INF/fonts/*</pattern>
+        <pattern>/WEB-INF/spring/*</pattern>        
+    </excludes>
+ 
+    <decorator name="externa" page="externa.jsp">
+        <pattern>/index.htm</pattern>
+    </decorator>
+    
+    <decorator name="interna" page="interna.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+</decorators>
